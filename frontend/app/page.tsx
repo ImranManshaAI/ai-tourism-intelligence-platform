@@ -1,5 +1,6 @@
 import { Card } from "../components/ui/Card";
 import { PageHeader } from "../components/ui/PageHeader";
+import { mockDestinations } from "../mocks/destinations";
 
 const navigationItems = [
   { label: "Dashboard", href: "/" },
@@ -8,25 +9,25 @@ const navigationItems = [
   { label: "AI Assistant", href: "#" },
 ];
 
-const summaryItems = [
-  {
-    label: "Destinations",
-    value: "5",
-    description: "Available tourism destinations",
-  },
-  {
-    label: "Documents",
-    value: "0",
-    description: "Knowledge documents",
-  },
-  {
-    label: "AI Assistant",
-    value: "Ready",
-    description: "Intelligence services",
-  },
-];
-
 export default function Home() {
+  const summaryItems = [
+    {
+      label: "Destinations",
+      value: String(mockDestinations.length),
+      description: "Available tourism destinations",
+    },
+    {
+      label: "Documents",
+      value: "0",
+      description: "Knowledge documents",
+    },
+    {
+      label: "AI Assistant",
+      value: "Ready",
+      description: "Intelligence services",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex min-h-screen">
