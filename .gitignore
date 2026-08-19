@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Track frontend source library
+!frontend/lib/
+!frontend/lib/**
