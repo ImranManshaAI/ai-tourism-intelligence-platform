@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Card } from "../../components/ui/Card";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { PageHeader } from "../../components/ui/PageHeader";
@@ -25,15 +26,25 @@ export default function DestinationsPage() {
             aria-label="Tourism destinations"
           >
             {mockDestinations.map((destination) => (
-              <Card key={destination.id} className="p-5">
-                <h2 className="text-lg font-semibold text-text-primary">
-                  {destination.name}
-                </h2>
+              <Link
+                key={destination.id}
+                href={`/destinations/${destination.id}`}
+                className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <Card className="h-full p-5 transition-shadow hover:shadow-md">
+                  <h2 className="text-lg font-semibold text-text-primary">
+                    {destination.name}
+                  </h2>
 
-                <p className="mt-2 text-sm leading-6 text-text-secondary">
-                  {destination.description}
-                </p>
-              </Card>
+                  <p className="mt-2 text-sm leading-6 text-text-secondary">
+                    {destination.description}
+                  </p>
+
+                  <p className="mt-4 text-sm font-medium text-accent">
+                    View details ?
+                  </p>
+                </Card>
+              </Link>
             ))}
           </section>
         )}
