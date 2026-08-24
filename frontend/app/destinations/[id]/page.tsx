@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "../../../components/ui/Badge";
 import { Card } from "../../../components/ui/Card";
@@ -24,10 +25,19 @@ export default async function DestinationPage({
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto w-full max-w-5xl p-5 md:p-8">
-        <PageHeader
-          title={destination.name}
-          description="Destination details and tourism information."
-        />
+        <Link
+          href="/destinations"
+          className="inline-flex text-sm font-medium text-accent hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          ← Back to Destinations
+        </Link>
+
+        <div className="mt-4">
+          <PageHeader
+            title={destination.name}
+            description="Destination details and tourism information."
+          />
+        </div>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <Card className="p-6 lg:col-span-2">
