@@ -82,6 +82,48 @@ export default async function DestinationPage({
             </dl>
           </Card>
         </div>
+
+        {destination.facilities.length > 0 ? (
+          <section className="mt-6">
+            <Card className="p-6">
+              <h2 className="text-lg font-semibold text-text-primary">
+                Facilities
+              </h2>
+
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                {destination.facilities.map((facility) => (
+                  <li
+                    key={facility}
+                    className="rounded-lg bg-surface-muted px-3 py-2 text-sm text-text-secondary"
+                  >
+                    {facility}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </section>
+        ) : null}
+
+        {destination.travel_tips.length > 0 ? (
+          <section className="mt-6">
+            <Card className="p-6">
+              <h2 className="text-lg font-semibold text-text-primary">
+                Travel Tips
+              </h2>
+
+              <ul className="mt-4 space-y-2">
+                {destination.travel_tips.map((tip) => (
+                  <li
+                    key={tip}
+                    className="text-sm leading-6 text-text-secondary"
+                  >
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </section>
+        ) : null}
       </div>
     </main>
   );
