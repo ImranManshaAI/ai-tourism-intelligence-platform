@@ -7,7 +7,7 @@ const navigationItems = [
   { label: "Dashboard", href: "/" },
   { label: "Destinations", href: "/destinations" },
   { label: "Documents", href: "/documents" },
-  { label: "AI Assistant", href: "#" },
+  { label: "AI Assistant", href: "/ai-assistant" },
 ];
 
 export default function Home() {
@@ -120,4 +120,5 @@ export default function Home() {
     </div>
   );
 }
+
 
