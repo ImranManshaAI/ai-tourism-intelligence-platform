@@ -58,9 +58,19 @@ export default function AiAssistantPage() {
 
           {submittedQuestion && (
             <div className="mt-6 rounded-lg border border-border bg-surface-muted p-4">
-              <p className="text-sm font-medium text-text-primary">
-                Your question
-              </p>
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm font-medium text-text-primary">
+                  Your question
+                </p>
+
+                <Button
+                  variant="secondary"
+                  onClick={() => setSubmittedQuestion("")}
+                >
+                  Clear
+                </Button>
+              </div>
+
               <p className="mt-2 text-sm leading-6 text-text-secondary">
                 {submittedQuestion}
               </p>
