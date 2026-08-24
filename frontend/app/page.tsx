@@ -1,11 +1,12 @@
+import Link from "next/link";
 import { Card } from "../components/ui/Card";
 import { PageHeader } from "../components/ui/PageHeader";
 import { mockDestinations } from "../mocks/destinations";
 
 const navigationItems = [
   { label: "Dashboard", href: "/" },
-  { label: "Destinations", href: "#" },
-  { label: "Documents", href: "#" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Documents", href: "/documents" },
   { label: "AI Assistant", href: "#" },
 ];
 
@@ -44,7 +45,7 @@ export default function Home() {
           <nav className="flex-1 px-3 py-5" aria-label="Main navigation">
             <div className="space-y-1">
               {navigationItems.map((item, index) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
@@ -54,7 +55,7 @@ export default function Home() {
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </nav>
@@ -119,3 +120,4 @@ export default function Home() {
     </div>
   );
 }
+
