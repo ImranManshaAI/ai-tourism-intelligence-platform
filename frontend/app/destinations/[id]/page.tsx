@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AppShell } from "../../../components/layout/AppShell";
 import { Badge } from "../../../components/ui/Badge";
 import { Card } from "../../../components/ui/Card";
 import { PageHeader } from "../../../components/ui/PageHeader";
@@ -23,7 +24,7 @@ export default async function DestinationPage({
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <AppShell activePath="/destinations">
       <div className="mx-auto w-full max-w-5xl p-5 md:p-8">
         <Link
           href="/destinations"
@@ -64,6 +65,7 @@ export default async function DestinationPage({
                 <dt className="text-xs font-medium uppercase tracking-wide text-text-muted">
                   Opening hours
                 </dt>
+
                 <dd className="mt-1 text-sm text-text-secondary">
                   {destination.opening_hours ?? "Verify before visit"}
                 </dd>
@@ -73,6 +75,7 @@ export default async function DestinationPage({
                 <dt className="text-xs font-medium uppercase tracking-wide text-text-muted">
                   Ticket price
                 </dt>
+
                 <dd className="mt-1 text-sm text-text-secondary">
                   {destination.ticket_price ?? "Verify before visit"}
                 </dd>
@@ -82,6 +85,7 @@ export default async function DestinationPage({
                 <dt className="text-xs font-medium uppercase tracking-wide text-text-muted">
                   Location
                 </dt>
+
                 <dd className="mt-1 text-sm text-text-secondary">
                   {destination.latitude !== null &&
                   destination.longitude !== null
@@ -135,6 +139,6 @@ export default async function DestinationPage({
           </section>
         ) : null}
       </div>
-    </main>
+    </AppShell>
   );
 }

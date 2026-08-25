@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AppShell } from "../../components/layout/AppShell";
 import { Card } from "../../components/ui/Card";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { PageHeader } from "../../components/ui/PageHeader";
@@ -6,7 +7,7 @@ import { mockDestinations } from "../../mocks/destinations";
 
 export default function DestinationsPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <AppShell activePath="/destinations">
       <div className="mx-auto w-full max-w-7xl p-5 md:p-8">
         <PageHeader
           title="Destinations"
@@ -41,15 +42,14 @@ export default function DestinationsPage() {
                   </p>
 
                   <p className="mt-4 text-sm font-medium text-accent">
-  View details →
-</p>
+                    View details →
+                  </p>
                 </Card>
               </Link>
             ))}
           </section>
         )}
       </div>
-    </main>
+    </AppShell>
   );
 }
-
