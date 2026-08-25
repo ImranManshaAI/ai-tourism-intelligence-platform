@@ -7,7 +7,17 @@ class Settings(BaseSettings):
     app_name: str = "AI Tourism Intelligence Platform API"
     app_version: str = "0.1.0"
     environment: str = "development"
+
     database_url: str
+
+    jwt_secret_key: str
+    jwt_algorithm: str = "HS256"
+
+    access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 7
+
+    jwt_issuer: str = "atip-backend"
+    jwt_audience: str = "atip-api"
 
     model_config = SettingsConfigDict(
         env_file=".env",
