@@ -37,12 +37,16 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/60">
               ATIP
             </p>
+
             <h2 className="mt-1 text-lg font-semibold">
               Tourism Intelligence
             </h2>
           </div>
 
-          <nav className="flex-1 px-3 py-5" aria-label="Main navigation">
+          <nav
+            className="flex-1 px-3 py-5"
+            aria-label="Main navigation"
+          >
             <div className="space-y-1">
               {navigationItems.map((item, index) => (
                 <Link
@@ -61,8 +65,13 @@ export default function Home() {
           </nav>
 
           <div className="border-t border-white/10 px-6 py-4">
-            <p className="text-xs text-white/50">Administration Platform</p>
-            <p className="mt-1 text-sm text-white/80">Phase 1</p>
+            <p className="text-xs text-white/50">
+              Administration Platform
+            </p>
+
+            <p className="mt-1 text-sm text-white/80">
+              Phase 1
+            </p>
           </div>
         </aside>
 
@@ -71,6 +80,7 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
               ATIP
             </p>
+
             <p className="mt-1 font-semibold text-text-primary">
               Tourism Intelligence
             </p>
@@ -103,15 +113,23 @@ export default function Home() {
               ))}
             </section>
 
-            <section className="mt-6">
-              <h2 className="text-lg font-semibold text-text-primary">
-                Quick Actions
-              </h2>
+            <section className="mt-8">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-lg font-semibold text-text-primary">
+                    Quick Actions
+                  </h2>
+
+                  <p className="mt-1 text-sm text-text-secondary">
+                    Access the main areas of the tourism intelligence platform.
+                  </p>
+                </div>
+              </div>
 
               <div className="mt-4 grid gap-4 md:grid-cols-3">
                 <Link
                   href="/destinations"
-                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Card className="h-full p-5 transition-shadow hover:shadow-md">
                     <h3 className="text-base font-semibold text-text-primary">
@@ -122,12 +140,16 @@ export default function Home() {
                       Explore available tourism destinations and view their
                       details.
                     </p>
+
+                    <p className="mt-4 text-sm font-medium text-accent">
+                      View destinations →
+                    </p>
                   </Card>
                 </Link>
 
                 <Link
                   href="/documents"
-                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Card className="h-full p-5 transition-shadow hover:shadow-md">
                     <h3 className="text-base font-semibold text-text-primary">
@@ -135,14 +157,19 @@ export default function Home() {
                     </h3>
 
                     <p className="mt-2 text-sm leading-6 text-text-secondary">
-                      View and manage knowledge documents for the platform.
+                      View supported document types and manage the platform
+                      knowledge base.
+                    </p>
+
+                    <p className="mt-4 text-sm font-medium text-accent">
+                      Open documents →
                     </p>
                   </Card>
                 </Link>
 
                 <Link
                   href="/ai-assistant"
-                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Card className="h-full p-5 transition-shadow hover:shadow-md">
                     <h3 className="text-base font-semibold text-text-primary">
@@ -153,12 +180,16 @@ export default function Home() {
                       Ask questions about tourism information and platform
                       knowledge.
                     </p>
+
+                    <p className="mt-4 text-sm font-medium text-accent">
+                      Ask the assistant →
+                    </p>
                   </Card>
                 </Link>
               </div>
             </section>
 
-            <section className="mt-6">
+            <section className="mt-8">
               <Card className="p-6">
                 <h2 className="text-lg font-semibold text-text-primary">
                   Welcome to ATIP
