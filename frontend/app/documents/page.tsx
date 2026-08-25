@@ -1,3 +1,4 @@
+import { AppShell } from "../../components/layout/AppShell";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { EmptyState } from "../../components/ui/EmptyState";
@@ -12,7 +13,7 @@ const supportedDocumentTypes = [
 
 export default function DocumentsPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <AppShell activePath="/documents">
       <div className="mx-auto w-full max-w-7xl p-5 md:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <PageHeader
@@ -20,13 +21,7 @@ export default function DocumentsPage() {
             description="Manage knowledge documents used by the tourism intelligence platform."
           />
 
-          <div className="flex flex-col items-start gap-2">
-            <Button disabled>Upload Document</Button>
-
-            <p className="text-xs text-text-muted">
-              Upload functionality coming soon
-            </p>
-          </div>
+          <Button disabled>Upload Document</Button>
         </div>
 
         <div className="mt-6">
@@ -36,9 +31,12 @@ export default function DocumentsPage() {
           />
         </div>
 
-        <section className="mt-6">
+        <section className="mt-6" aria-labelledby="supported-document-types">
           <Card className="p-5">
-            <h2 className="text-lg font-semibold text-text-primary">
+            <h2
+              id="supported-document-types"
+              className="text-lg font-semibold text-text-primary"
+            >
               Supported document types
             </h2>
 
@@ -60,6 +58,6 @@ export default function DocumentsPage() {
           </Card>
         </section>
       </div>
-    </main>
+    </AppShell>
   );
 }
