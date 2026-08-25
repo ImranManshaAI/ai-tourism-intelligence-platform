@@ -41,8 +41,8 @@ export default function DestinationsPage() {
                   </p>
 
                   <p className="mt-4 text-sm font-medium text-accent">
-                    View details ?
-                  </p>
+  View details →
+</p>
                 </Card>
               </Link>
             ))}
