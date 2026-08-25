@@ -20,7 +20,13 @@ export default function DocumentsPage() {
             description="Manage knowledge documents used by the tourism intelligence platform."
           />
 
-          <Button disabled>Upload Document</Button>
+          <div className="flex flex-col items-start gap-2">
+            <Button disabled>Upload Document</Button>
+
+            <p className="text-xs text-text-muted">
+              Upload functionality coming soon
+            </p>
+          </div>
         </div>
 
         <div className="mt-6">
@@ -30,12 +36,9 @@ export default function DocumentsPage() {
           />
         </div>
 
-        <section className="mt-6" aria-labelledby="supported-document-types">
+        <section className="mt-6">
           <Card className="p-5">
-            <h2
-              id="supported-document-types"
-              className="text-lg font-semibold text-text-primary"
-            >
+            <h2 className="text-lg font-semibold text-text-primary">
               Supported document types
             </h2>
 
