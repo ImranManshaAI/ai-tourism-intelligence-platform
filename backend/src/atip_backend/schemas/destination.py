@@ -1,5 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
+from math import ceil
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict
@@ -39,3 +40,37 @@ class DestinationResponse(BaseModel):
 
     created_at: datetime
     updated_at: datetime
+
+
+class PaginatedDestinationResponse(BaseModel):
+    """Paginated destination API response."""
+
+    items: list[DestinationResponse]
+
+    total: int
+    page: int
+    page_size: int
+    total_pages: int
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        items: list[DestinationResponse],
+        total: int,
+        page: int,
+        page_size: int,
+    ) -> "PaginatedDestinationResponse":
+        """Create a paginated response."""
+
+        total_pages = ceil(
+            total / page_size
+        ) if total > 0 else 0
+
+        return cls(
+            items=items,
+            total=total,
+            page=page,
+            page_size=page_size,
+            total_pages=total_pages,
+        )

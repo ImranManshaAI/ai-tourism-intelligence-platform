@@ -5,7 +5,10 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from atip_backend.db.session import SessionLocal
-from atip_backend.schemas.destination import DestinationResponse
+from atip_backend.schemas.destination import (
+    DestinationResponse,
+    PaginatedDestinationResponse,
+)
 from atip_backend.services.destination_service import DestinationService
 
 
@@ -28,29 +31,57 @@ def get_db() -> Generator[Session, None, None]:
 
 @router.get(
     "",
-    response_model=list[DestinationResponse],
+    response_model=PaginatedDestinationResponse,
 )
 def get_destinations(
-    category: str | None = None,
-    city: str | None = None,
+    category: str | None = Query(
+        default=None,
+        min_length=1,
+    ),
+    city: str | None = Query(
+        default=None,
+        min_length=1,
+    ),
+    page: int = Query(
+        default=1,
+        ge=1,
+    ),
+    page_size: int = Query(
+        default=20,
+        ge=1,
+        le=100,
+    ),
     db: Session = Depends(get_db),
-):
-    """Get all destinations with optional filters."""
+) -> PaginatedDestinationResponse:
+    """Get paginated destinations with optional filters."""
 
     service = DestinationService(db)
 
-    if category:
-        return service.get_by_category(category)
+    destinations, total = service.get_all(
+        category=category,
+        city=city,
+        page=page,
+        page_size=page_size,
+    )
 
-    if city:
-        return service.get_by_city(city)
+    items = [
+        DestinationResponse.model_validate(
+            destination
+        )
+        for destination in destinations
+    ]
 
-    return service.get_all()
+    return PaginatedDestinationResponse.create(
+        items=items,
+        total=total,
+        page=page,
+        page_size=page_size,
+    )
 
 
 @router.get(
     "/search",
-    response_model=list[DestinationResponse],
+    response_model=PaginatedDestinationResponse,
 )
 def search_destinations(
     q: str = Query(
@@ -58,13 +89,40 @@ def search_destinations(
         min_length=1,
         description="Search destination names",
     ),
+    page: int = Query(
+        default=1,
+        ge=1,
+    ),
+    page_size: int = Query(
+        default=20,
+        ge=1,
+        le=100,
+    ),
     db: Session = Depends(get_db),
-):
-    """Search destinations by name."""
+) -> PaginatedDestinationResponse:
+    """Search destinations by name with pagination."""
 
     service = DestinationService(db)
 
-    return service.search(q)
+    destinations, total = service.search(
+        q,
+        page=page,
+        page_size=page_size,
+    )
+
+    items = [
+        DestinationResponse.model_validate(
+            destination
+        )
+        for destination in destinations
+    ]
+
+    return PaginatedDestinationResponse.create(
+        items=items,
+        total=total,
+        page=page,
+        page_size=page_size,
+    )
 
 
 @router.get(
@@ -74,7 +132,7 @@ def search_destinations(
 def get_destination(
     destination_id: UUID,
     db: Session = Depends(get_db),
-):
+) -> DestinationResponse:
     """Get a single destination by ID."""
 
     service = DestinationService(db)
@@ -87,4 +145,6 @@ def get_destination(
             detail="Destination not found",
         )
 
-    return destination
+    return DestinationResponse.model_validate(
+        destination
+    )
