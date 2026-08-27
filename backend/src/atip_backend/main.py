@@ -4,6 +4,9 @@ from atip_backend.api.v1.auth import router as auth_router
 from atip_backend.api.v1.destinations import (
     router as destinations_router,
 )
+from atip_backend.api.v1.documents import (
+    router as documents_router,
+)
 from atip_backend.core.config import get_settings
 
 
@@ -23,6 +26,11 @@ app.include_router(
 
 app.include_router(
     destinations_router,
+    prefix="/api/v1",
+)
+
+app.include_router(
+    documents_router,
     prefix="/api/v1",
 )
 

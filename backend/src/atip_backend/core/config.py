@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 15
     refresh_token_expire_days: int = 7
 
+    document_storage_path: str = "storage/documents"
+    max_document_size_mb: int = 25
+
     jwt_issuer: str = "atip-backend"
     jwt_audience: str = "atip-api"
 
