@@ -5,6 +5,7 @@ from fastapi import (
     APIRouter,
     Depends,
     File,
+    HTTPException,
     UploadFile,
     status,
 )
@@ -17,7 +18,11 @@ from atip_backend.api.deps import (
 from atip_backend.models.document import Document
 from atip_backend.models.user import User
 from atip_backend.schemas.document import (
+    DocumentProcessResponse,
     DocumentResponse,
+)
+from atip_backend.services.document_processing_service import (
+    DocumentProcessingService,
 )
 from atip_backend.services.document_service import (
     DocumentService,
@@ -65,6 +70,49 @@ async def upload_document(
         db.refresh(document)
 
         return document
+
+    except Exception:
+        db.rollback()
+        raise
+
+
+@router.post(
+    "/{document_id}/process",
+    response_model=DocumentProcessResponse,
+)
+def process_document(
+    document_id: UUID,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> DocumentProcessResponse:
+    """Extract and chunk an uploaded document."""
+
+    document = db.get(
+        Document,
+        document_id,
+    )
+
+    if document is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Document not found",
+        )
+
+    service = DocumentProcessingService()
+
+    try:
+        chunks_created = service.process_document(
+            db=db,
+            document_id=document_id,
+        )
+
+        db.commit()
+
+        return DocumentProcessResponse(
+            document_id=document.id,
+            status=document.status,
+            chunks_created=chunks_created,
+        )
 
     except Exception:
         db.rollback()

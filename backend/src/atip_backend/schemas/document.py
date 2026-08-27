@@ -20,3 +20,11 @@ class DocumentResponse(BaseModel):
     created_by: UUID
     created_at: datetime
     updated_at: datetime
+
+
+class DocumentProcessResponse(BaseModel):
+    """Result of document processing."""
+
+    document_id: UUID
+    status: str
+    chunks_created: int
